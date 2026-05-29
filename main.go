@@ -75,6 +75,7 @@ func getConfig(c *fiber.Ctx) error {
 	log.Println("URL:", url)
 	resp, err := client.Do(req)
 	if err != nil {
+		log.Println("HTTP ERROR:", err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
 			"error": "Failed to fetch config",
 		})

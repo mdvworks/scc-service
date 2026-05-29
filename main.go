@@ -111,6 +111,7 @@ func getConfig(c *fiber.Ctx) error {
 }
 
 func main() {
+	log.Println("API_KEY:", os.Getenv("API_KEY"))
 	if err := godotenv.Load(); err != nil {
 		log.Println("No .env file found, using environment variables")
 	}

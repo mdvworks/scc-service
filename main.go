@@ -84,9 +84,12 @@ func getConfig(c *fiber.Ctx) error {
 
 	if resp.StatusCode != http.StatusOK {
 		body, _ := io.ReadAll(resp.Body)
-		log.Printf("❌ GitHub API error: %s", string(body))
+
+		log.Printf("❌ STATUS: %d", resp.StatusCode)
+		log.Printf("❌ BODY: %s", string(body))
+
 		return c.Status(resp.StatusCode).JSON(fiber.Map{
-			"error": "Config not found",
+			"error": string(body),
 		})
 	}
 

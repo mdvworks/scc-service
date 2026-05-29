@@ -17,6 +17,9 @@ WORKDIR /app
 
 COPY --from=builder /app/scc-service .
 
+# COPY CA CERTIFICATES
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+
 EXPOSE 3001
 
 CMD ["./scc-service"]
